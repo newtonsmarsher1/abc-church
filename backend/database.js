@@ -2,12 +2,22 @@ const sqlite3 = require('sqlite3').verbose();
 const path = require('path');
 const fs = require('fs');
 
-const DB_PATH = path.join(__dirname, '..', 'data', 'church.db');
-
-// Ensure data directory exists
-const dataDir = path.join(__dirname, '..', 'data');
-if (!fs.existsSync(dataDir)) {
-  fs.mkdirSync(dataDir, { recursive: true });
+// Determine the correct database path based on environment
+let DB_PATH;
+if (process.env.RENDER || process.env.HOME) {
+  // On Render or cloud platforms, use persistent storage in HOME directory
+  const dataDir = path.join(process.env.HOME || __dirname, 'data');
+  if (!fs.existsSync(dataDir)) {
+    fs.mkdirSync(dataDir, { recursive: true });
+  }
+  DB_PATH = path.join(dataDir, 'church.db');
+} else {
+  // Local development
+  const dataDir = path.join(__dirname, '..', 'data');
+  if (!fs.existsSync(dataDir)) {
+    fs.mkdirSync(dataDir, { recursive: true });
+  }
+  DB_PATH = path.join(dataDir, 'church.db');
 }
 
 // Initialize database and create tables if they don't exist
@@ -88,4 +98,3 @@ function getDB() {
 }
 
 module.exports = { initializeDatabase, getDB };
-
