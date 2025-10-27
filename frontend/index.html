@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>ABC Church Information System</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header class="site-header">
+        <div class="container header-inner">
+            <div class="logo">ABC Church</div>
+            <nav class="nav" aria-label="Main Navigation">
+                <button class="nav-toggle" aria-expanded="false" aria-controls="nav-menu">☰</button>
+                <ul id="nav-menu" class="nav-menu">
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#staff">Staff</a></li>
+                    <li><a href="#services">Services</a></li>
+                    <li><a href="#membership">Membership</a></li>
+                    <li><a href="#contributions">Contributions</a></li>
+                    <li><a href="#campaign">Capital Campaign</a></li>
+                    <li><a href="#ceremonies">Ceremonies</a></li>
+                    <li><a href="#reports">Reports</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="container">
+            <h1>ABC Church Information System</h1>
+            <p>A modern web application for managing ABC Church operations: membership, services, contributions, and ceremonies.</p>
+            <a class="btn" href="#membership">Register a New Member</a>
+        </div>
+    </section>
+
+    <main class="container">
+        <section id="about" class="card">
+            <h2>About ABC Church</h2>
+            <p>ABC Church is a fast-growing congregation in Grand Rapids, Michigan. The church now has approximately 400 registered households and is part of a larger denomination with over 250 churches nationwide. Regional headquarters is in Detroit with other regional offices in New York, Miami, and Seattle.</p>
+            <p>The church keeps organized records of activities and submits monthly reports on ceremonies and finances to the Detroit office. This system provides a comprehensive web solution for managing these operations.</p>
+        </section>
+
+        <section id="staff" class="card grid-2">
+            <div>
+                <h2>Staff & Roles</h2>
+                <ul class="bulleted">
+                    <li>Reverend Timothy Beck — Senior Minister</li>
+                    <li>Reverend Jason Howard — Associate Minister</li>
+                    <li>Margie Robbens — Business Manager</li>
+                    <li>Mabel McGonahey — Administrative Assistant</li>
+                    <li>Leroy Strickly — Part-time Maintenance</li>
+                    <li>Jack Fogerty — Choir Director</li>
+                </ul>
+            </div>
+            <div class="note">
+                <h3>Operations</h3>
+                <p>This system digitizes registration, contributions, ceremonies, and reporting, moving from paper-based to a modern digital platform.</p>
+            </div>
+        </section>
+
+        <section id="services" class="card">
+            <h2>Sunday Services</h2>
+            <p>Three services are held each Sunday. A ten-member volunteer choir practices on Wednesdays and sings during Sunday services.</p>
+            <div class="grid-3 service-times">
+                <div class="pill">8:00 AM</div>
+                <div class="pill">10:00 AM</div>
+                <div class="pill">6:00 PM</div>
+            </div>
+        </section>
+
+        <section id="membership" class="card grid-2">
+            <div>
+                <h2>Register New Member</h2>
+                <form id="member-form" class="form">
+                    <div class="row">
+                        <label for="fullName">Full Name</label>
+                        <input id="fullName" name="fullName" type="text" required />
+                    </div>
+                    <div class="row">
+                        <label for="email">Email</label>
+                        <input id="email" name="email" type="email" required />
+                    </div>
+                    <div class="row">
+                        <label for="householdSize">Household Size</label>
+                        <input id="householdSize" name="householdSize" type="number" min="1" value="1" />
+                    </div>
+                    <div class="row">
+                        <label for="sponsor">Sponsor (if any)</label>
+                        <input id="sponsor" name="sponsor" type="text" />
+                    </div>
+                    <button type="submit" class="btn">Add Member</button>
+                </form>
+            </div>
+            <div>
+                <h3>Registered Members</h3>
+                <p class="muted">Data is stored securely in the database.</p>
+                <table class="table" id="member-table" aria-live="polite">
+                    <thead>
+                        <tr><th>Name</th><th>Email</th><th>Household</th><th>Sponsor</th><th></th></tr>
+                    </thead>
+                    <tbody></tbody>
+                </table>
+            </div>
+        </section>
+
+        <section id="contributions" class="card grid-2">
+            <div>
+                <h2>Weekly Contributions</h2>
+                <form id="contribution-form" class="form">
+                    <div class="row">
+                        <label for="memberSelect">Member</label>
+                        <select id="memberSelect" required></select>
+                    </div>
+                    <div class="row">
+                        <label for="amount">Amount</label>
+                        <input id="amount" type="number" min="0" step="0.01" placeholder="0.00" required />
+                    </div>
+                    <div class="row">
+                        <label for="type">Type</label>
+                        <select id="type">
+                            <option value="envelope">Envelope</option>
+                            <option value="loose">Loose Offering</option>
+                            <option value="Cheque">Cheque</option>
+                        </select>
+                    </div>
+                    <button type="submit" class="btn">Record Contribution</button>
+                </form>
+            </div>
+            <div>
+                <h3>Recent Contributions</h3>
+                <table class="table" id="contrib-table">
+                    <thead>
+                        <tr><th>Date</th><th>Member</th><th>Type</th><th>Amount</th></tr>
+                    </thead>
+                    <tbody></tbody>
+                    <tfoot>
+                        <tr><td colspan="3">Total This Month</td><td id="contrib-total">$0.00</td></tr>
+                    </tfoot>
+                </table>
+            </div>
+        </section>
+
+        <section id="campaign" class="card grid-2">
+            <div>
+                <h2>Capital Improvement Campaign</h2>
+                <p>Goal: purchase and prepare nearby property for parking — estimated cost $250,000. Members can pledge monthly contributions over three years.</p>
+                <form id="pledge-form" class="form">
+                    <div class="row">
+                        <label for="pledgeMember">Member</label>
+                        <select id="pledgeMember" required></select>
+                    </div>
+                    <div class="row">
+                        <label for="pledgeMonthly">Monthly Pledge ($)</label>
+                        <input id="pledgeMonthly" type="number" min="0" step="0.01" required />
+                    </div>
+                    <div class="row">
+                        <label for="pledgeMonths">Months</label>
+                        <input id="pledgeMonths" type="number" min="1" max="36" value="36" />
+                    </div>
+                    <button class="btn" type="submit">Add Pledge</button>
+                </form>
+            </div>
+            <div>
+                <h3>Campaign Progress</h3>
+                <div class="progress">
+                    <div class="progress-bar" id="campaign-progress" style="width:0%"></div>
+                </div>
+                <div class="stats">
+                    <div><strong>Goal:</strong> $250,000</div>
+                    <div><strong>Pledged:</strong> <span id="pledged">$0.00</span></div>
+                    <div><strong>Remaining:</strong> <span id="remaining">$250,000.00</span></div>
+                </div>
+                <table class="table" id="pledge-table">
+                    <thead>
+                        <tr><th>Member</th><th>Monthly</th><th>Months</th><th>Total</th></tr>
+                    </thead>
+                    <tbody></tbody>
+                </table>
+            </div>
+        </section>
+
+        <section id="ceremonies" class="card grid-2">
+            <div>
+                <h2>Ceremonies</h2>
+                <p>Track baptisms, weddings, and funerals. Baptism requires three months of preparation. Weddings require membership and two months of preparation. Records support annual summaries for tax and reporting.</p>
+                <form id="ceremony-form" class="form">
+                    <div class="row">
+                        <label for="ceremonyType">Type</label>
+                        <select id="ceremonyType">
+                            <option value="baptism">Baptism</option>
+                            <option value="wedding">Wedding</option>
+                            <option value="funeral">Funeral</option>
+                        </select>
+                    </div>
+                    <div class="row">
+                        <label for="ceremonyMember">Member</label>
+                        <select id="ceremonyMember" required></select>
+                    </div>
+                    <div class="row">
+                        <label for="ceremonyDate">Date</label>
+                        <input id="ceremonyDate" type="date" required />
+                    </div>
+                    <button type="submit" class="btn">Add Ceremony</button>
+                </form>
+            </div>
+            <div>
+                <h3>Recent Ceremonies</h3>
+                <table class="table" id="ceremony-table">
+                    <thead>
+                        <tr><th>Date</th><th>Type</th><th>Member</th></tr>
+                    </thead>
+                    <tbody></tbody>
+                </table>
+            </div>
+        </section>
+
+        <section id="reports" class="card">
+            <h2>Monthly Report</h2>
+            <p>Generate a simple printable report of ceremonies and finances for this month.</p>
+            <div class="actions">
+                <button id="btn-generate" class="btn">Generate Report</button>
+                <button id="btn-print" class="btn outline">Print</button>
+            </div>
+            <div id="report-output" class="report" aria-live="polite"></div>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <div class="container">
+            <p>© <span id="year"></span> ABC Church — Professional Information System</p>
+        </div>
+    </footer>
+
+    <script src="app.js"></script>
+</body>
+</html>
+

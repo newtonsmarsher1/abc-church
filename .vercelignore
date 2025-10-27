@@ -1,0 +1,9 @@
+node_modules
+data
+*.db
+.git
+.env.local
+README.md
+QUICKSTART.md
+ARCHITECTURE.md
+
