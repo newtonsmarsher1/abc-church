@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>M.O.S.A (MOUNTAIN OF SOLUTION AND ANSWERS) Information System</title>
+    <title>Reports | M.O.S.A (MOUNTAIN OF SOLUTION AND ANSWERS)</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
@@ -12,12 +12,8 @@
 <body>
     <header class="site-header">
         <div class="container header-inner">
-            <div class="logo" style="display:flex; align-items:center; gap:11px; font-weight:800; letter-spacing:0.5px;">
-              <img src="Assets/WhatsApp Image 2025-11-22 at 09.32.56_60a8317a.jpg" alt="MOSA Church Logo" style="height:48px; width:auto; border-radius:10px; background:#fff; box-shadow:0 1px 8px #ccb;"/>
-              <span style="font-size:1.13em;">M.O.S.A (MOUNTAIN OF SOLUTION AND ANSWERS)</span>
-            </div>
+            <div class="logo">M.O.S.A (MOUNTAIN OF SOLUTION AND ANSWERS)</div>
             <nav class="nav" aria-label="Main Navigation">
-                <button class="nav-toggle" aria-expanded="false" aria-controls="nav-menu">☰</button>
                 <ul id="nav-menu" class="nav-menu">
                     <li><a href="about.html">About</a></li>
                     <li><a href="staff.html">Staff</a></li>
@@ -31,24 +27,22 @@
             </nav>
         </div>
     </header>
-
     <main class="container">
-        <section class="hero">
-            <div class="container">
-                <h1>M.O.S.A (MOUNTAIN OF SOLUTION AND ANSWERS) Information System</h1>
-                <p>A modern web application for managing M.O.S.A (MOUNTAIN OF SOLUTION AND ANSWERS) operations: membership, services, contributions, and ceremonies.</p>
-                <a class="btn" href="membership.html">Register a New Member</a>
+        <section class="card">
+            <h2>Monthly Report</h2>
+            <p>Generate a simple printable report of ceremonies and finances for this month.</p>
+            <div class="actions">
+                <button id="btn-generate" class="btn">Generate Report</button>
+                <button id="btn-print" class="btn outline">Print</button>
             </div>
+            <div id="report-output" class="report" aria-live="polite"></div>
         </section>
     </main>
-
     <footer class="site-footer">
         <div class="container">
             <p>© <span id="year"></span> M.O.S.A (MOUNTAIN OF SOLUTION AND ANSWERS) — Professional Information System</p>
         </div>
     </footer>
-
     <script src="app.js"></script>
 </body>
 </html>
-

@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>M.O.S.A (MOUNTAIN OF SOLUTION AND ANSWERS) Information System</title>
+    <title>Contributions | M.O.S.A (MOUNTAIN OF SOLUTION AND ANSWERS)</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
@@ -17,7 +17,6 @@
               <span style="font-size:1.13em;">M.O.S.A (MOUNTAIN OF SOLUTION AND ANSWERS)</span>
             </div>
             <nav class="nav" aria-label="Main Navigation">
-                <button class="nav-toggle" aria-expanded="false" aria-controls="nav-menu">☰</button>
                 <ul id="nav-menu" class="nav-menu">
                     <li><a href="about.html">About</a></li>
                     <li><a href="staff.html">Staff</a></li>
@@ -31,24 +30,49 @@
             </nav>
         </div>
     </header>
-
     <main class="container">
-        <section class="hero">
-            <div class="container">
-                <h1>M.O.S.A (MOUNTAIN OF SOLUTION AND ANSWERS) Information System</h1>
-                <p>A modern web application for managing M.O.S.A (MOUNTAIN OF SOLUTION AND ANSWERS) operations: membership, services, contributions, and ceremonies.</p>
-                <a class="btn" href="membership.html">Register a New Member</a>
+        <section class="card grid-2">
+            <div>
+                <h2>Weekly Contributions</h2>
+                <form id="contribution-form" class="form">
+                    <div class="row">
+                        <label for="memberSelect">Member</label>
+                        <select id="memberSelect" required></select>
+                    </div>
+                    <div class="row">
+                        <label for="amount">Amount</label>
+                        <input id="amount" type="number" min="0" step="0.01" placeholder="0.00" required />
+                    </div>
+                    <div class="row">
+                        <label for="type">Type</label>
+                        <select id="type">
+                            <option value="envelope">Envelope</option>
+                            <option value="loose">Loose Offering</option>
+                            <option value="Cheque">Cheque</option>
+                        </select>
+                    </div>
+                    <button type="submit" class="btn">Record Contribution</button>
+                </form>
+            </div>
+            <div>
+                <h3>Recent Contributions</h3>
+                <table class="table" id="contrib-table">
+                    <thead>
+                        <tr><th>Date</th><th>Member</th><th>Type</th><th>Amount</th></tr>
+                    </thead>
+                    <tbody></tbody>
+                    <tfoot>
+                        <tr><td colspan="3">Total This Month</td><td id="contrib-total">$0.00</td></tr>
+                    </tfoot>
+                </table>
             </div>
         </section>
     </main>
-
     <footer class="site-footer">
         <div class="container">
             <p>© <span id="year"></span> M.O.S.A (MOUNTAIN OF SOLUTION AND ANSWERS) — Professional Information System</p>
         </div>
     </footer>
-
     <script src="app.js"></script>
 </body>
 </html>
-

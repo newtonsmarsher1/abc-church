@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>M.O.S.A (MOUNTAIN OF SOLUTION AND ANSWERS) Information System</title>
+    <title>Membership | M.O.S.A (MOUNTAIN OF SOLUTION AND ANSWERS)</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
@@ -17,7 +17,6 @@
               <span style="font-size:1.13em;">M.O.S.A (MOUNTAIN OF SOLUTION AND ANSWERS)</span>
             </div>
             <nav class="nav" aria-label="Main Navigation">
-                <button class="nav-toggle" aria-expanded="false" aria-controls="nav-menu">☰</button>
                 <ul id="nav-menu" class="nav-menu">
                     <li><a href="about.html">About</a></li>
                     <li><a href="staff.html">Staff</a></li>
@@ -31,24 +30,47 @@
             </nav>
         </div>
     </header>
-
     <main class="container">
-        <section class="hero">
-            <div class="container">
-                <h1>M.O.S.A (MOUNTAIN OF SOLUTION AND ANSWERS) Information System</h1>
-                <p>A modern web application for managing M.O.S.A (MOUNTAIN OF SOLUTION AND ANSWERS) operations: membership, services, contributions, and ceremonies.</p>
-                <a class="btn" href="membership.html">Register a New Member</a>
+        <section class="card grid-2">
+            <div>
+                <h2>Register New Member</h2>
+                <form id="member-form" class="form">
+                    <div class="row">
+                        <label for="fullName">Full Name</label>
+                        <input id="fullName" name="fullName" type="text" required />
+                    </div>
+                    <div class="row">
+                        <label for="email">Email</label>
+                        <input id="email" name="email" type="email" required />
+                    </div>
+                    <div class="row">
+                        <label for="householdSize">Household Size</label>
+                        <input id="householdSize" name="householdSize" type="number" min="1" value="1" />
+                    </div>
+                    <div class="row">
+                        <label for="sponsor">Sponsor (if any)</label>
+                        <input id="sponsor" name="sponsor" type="text" />
+                    </div>
+                    <button type="submit" class="btn">Add Member</button>
+                </form>
+            </div>
+            <div>
+                <h3>Registered Members</h3>
+                <p class="muted">Data is stored securely in the database.</p>
+                <table class="table" id="member-table" aria-live="polite">
+                    <thead>
+                        <tr><th>Name</th><th>Email</th><th>Household</th><th>Sponsor</th><th></th></tr>
+                    </thead>
+                    <tbody></tbody>
+                </table>
             </div>
         </section>
     </main>
-
     <footer class="site-footer">
         <div class="container">
             <p>© <span id="year"></span> M.O.S.A (MOUNTAIN OF SOLUTION AND ANSWERS) — Professional Information System</p>
         </div>
     </footer>
-
     <script src="app.js"></script>
 </body>
 </html>
-

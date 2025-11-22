@@ -279,7 +279,7 @@ function bindEvents() {
   btnGenerate.addEventListener('click', async () => {
     const report = await getMonthlyReport();
     reportOutput.innerHTML = `
-      <h3>ABC Church Monthly Report — ${report.monthName} ${report.year}</h3>
+      <h3>M.O.S.A (MOUNTAIN OF SOLUTION AND ANSWERS) Monthly Report — ${report.monthName} ${report.year}</h3>
       <p><strong>Total Contributions:</strong> ${formatCurrency(report.totalContributions)}</p>
       <p><strong>Ceremonies:</strong> ${report.ceremonyCount}</p>
       <ul>
@@ -296,9 +296,9 @@ function bindEvents() {
 }
 
 function updateCeremonyTypeBackground() {
-  // Keep the background consistent with other dropdowns (dark blue)
+  // Use the card background color for consistency with the green theme
   if (ceremonyTypeSelect) {
-    ceremonyTypeSelect.style.backgroundColor = '#1a2d4e';
+    ceremonyTypeSelect.style.backgroundColor = getComputedStyle(document.documentElement).getPropertyValue('--card');
   }
 }
 
