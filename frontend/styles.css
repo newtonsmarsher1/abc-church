@@ -220,51 +220,53 @@ input:focus, select:focus { outline: none; border-color: var(--accent); box-shad
     outline: 2.5px solid #19c37d33;
     padding: 14px 17px;
     font-size: 2.35em;
-    top: 9px; right: 15px; position: absolute;
+    top: 9px; left: 9px; right: auto; position: absolute;
   }
   .nav-menu {
     position: fixed;
-    top: 0; left: 0; right: 0;
+    left: 0; top: 0; bottom: 0;
+    right: auto;
+    height: 100vh;
     background: #124b30;
-    border-radius: 0 0 18px 18px;
-    box-shadow: 0 19px 50px #000b;
+    border-radius: 0 24px 24px 0;
+    box-shadow: 15px 0 50px #000b;
     flex-direction: column;
     gap: 12px;
-    padding: 30px 0 23px 0;
+    padding: 35px 0 23px 0;
     text-align: left;
     display: none;
     z-index: 11000;
-    width: 100vw;
+    width: 76vw;
+    max-width: 380px;
     margin: 0;
-    border-bottom: 4px solid #1deb99;
-    transform: translateY(-88px);
-    opacity: 0.11;
-    transition: all 0.34s cubic-bezier(.64,0,.32,1.1);
+    border-right: 4px solid #1deb99;
+    transform: translateX(-120%);
+    opacity: 0.05;
+    transition: all 0.39s cubic-bezier(.64, 0, .32, 1.1);
   }
   .nav-menu.open {
     display: flex;
-    transform: translateY(0);
+    transform: translateX(0);
     opacity: 1;
   }
   .nav-menu li { width: 100%; }
   .nav-menu a {
     display: block;
     padding: 21px 29px;
-    font-size: 1.25em;
+    font-size: 1.20em;
     border-radius: 0; background: none;
     border-bottom: 1.7px solid #13ebaf;
     color: #fff;
     margin: 0;
-    letter-spacing: 0.04em
+    letter-spacing: 0.046em
   }
   .nav-menu a:active, .nav-menu a:hover {
     background: #1a7a55ee; color: #fffd; font-weight: 700;
   }
-  /* Overlay behind menu */
   body.menu-open::before {
     content: "";
     position: fixed; z-index: 10900;
-    top:0; left:0; right:0; bottom:0;
+    top: 0; left: 0; right: 0; bottom: 0;
     background: rgba(19,19,23,0.38);
     pointer-events: auto;
     transition: opacity 0.28s;
