@@ -315,20 +315,37 @@ document.addEventListener('DOMContentLoaded', () => {
   init();
 
   // Nav mobile menu logic
-  if (window.innerWidth <= 700) {
-    if (navToggle && navMenu) {
-      navToggle.addEventListener('click', function() {
-        const navOpen = navMenu.classList.toggle('open');
-        navToggle.setAttribute('aria-expanded', String(navOpen));
-        document.body.style.overflow = navOpen ? 'hidden' : '';
-      });
-      // Close menu when clicking a link (mobile only)
-      [...navMenu.querySelectorAll('a')].forEach(link => link.addEventListener('click', function () {
+  function isMobile() {
+    return window.innerWidth <= 700;
+  }
+  if (navToggle && navMenu) {
+    navToggle.addEventListener('click', function () {
+      const navOpen = navMenu.classList.toggle('open');
+      navToggle.setAttribute('aria-expanded', String(navOpen));
+      if (navOpen && isMobile()) {
+        document.body.classList.add('menu-open');
+        document.body.style.overflow = 'hidden';
+      } else {
+        document.body.classList.remove('menu-open');
+        document.body.style.overflow = '';
+      }
+    });
+    // Close menu when tapping a link on mobile
+    [...navMenu.querySelectorAll('a')].forEach(link => link.addEventListener('click', function () {
+      navMenu.classList.remove('open');
+      navToggle.setAttribute('aria-expanded', 'false');
+      document.body.classList.remove('menu-open');
+      document.body.style.overflow = '';
+    }));
+    // Close menu when overlay (body) is tapped
+    document.body.addEventListener('click', function (e) {
+      if (isMobile() && document.body.classList.contains('menu-open') && e.target === document.body) {
         navMenu.classList.remove('open');
         navToggle.setAttribute('aria-expanded', 'false');
+        document.body.classList.remove('menu-open');
         document.body.style.overflow = '';
-      }));
-    }
+      }
+    });
   }
 
   // Staff photo modal logic
