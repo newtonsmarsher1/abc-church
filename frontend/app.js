@@ -311,5 +311,71 @@ async function init() {
   await refreshCeremoniesUI();
 }
 
-document.addEventListener('DOMContentLoaded', init);
+document.addEventListener('DOMContentLoaded', () => {
+  init();
+
+  // Nav mobile menu logic
+  if (window.innerWidth <= 700) {
+    if (navToggle && navMenu) {
+      navToggle.addEventListener('click', function() {
+        const navOpen = navMenu.classList.toggle('open');
+        navToggle.setAttribute('aria-expanded', String(navOpen));
+        document.body.style.overflow = navOpen ? 'hidden' : '';
+      });
+      // Close menu when clicking a link (mobile only)
+      [...navMenu.querySelectorAll('a')].forEach(link => link.addEventListener('click', function () {
+        navMenu.classList.remove('open');
+        navToggle.setAttribute('aria-expanded', 'false');
+        document.body.style.overflow = '';
+      }));
+    }
+  }
+
+  // Staff photo modal logic
+  const staffModal = document.getElementById('staff-modal');
+  const staffModalImg = document.getElementById('staff-modal-img');
+  const staffModalClose = document.getElementById('staff-modal-close');
+
+  // Open modal on staff photo click
+  document.querySelectorAll('.staff-photo').forEach(img => {
+    img.addEventListener('click', function(e) {
+      staffModalImg.src = this.src;
+      staffModalImg.alt = this.alt;
+      staffModal.style.display = 'flex';
+      document.body.style.overflow = 'hidden';
+    });
+  });
+  // Close modal on button or backdrop click
+  staffModalClose.addEventListener('click', () => {
+    staffModal.style.display = 'none';
+    staffModalImg.src = '';
+    document.body.style.overflow = '';
+  });
+  staffModal.addEventListener('click', function(e) {
+    if(e.target === staffModal) {
+      staffModal.style.display = 'none';
+      staffModalImg.src = '';
+      document.body.style.overflow = '';
+    }
+  });
+  // Prevent context menu (right click) on modal image
+  staffModalImg.addEventListener('contextmenu', e => e.preventDefault());
+
+  // Try to block PrintScreen (show overlay on keydown)
+  document.addEventListener('keydown', e => {
+    if (staffModal.style.display === 'flex' && (e.key === 'PrintScreen' || e.key === 'F13')) {
+      staffModalImg.style.filter = 'blur(24px) brightness(0.2)';
+      setTimeout(() => staffModalImg.style.filter = '', 600);
+      // Optionally copy blank/overlay to clipboard: try{
+      //   navigator.clipboard.writeText('Screenshots Disabled');
+      // } catch {}
+    }
+  });
+
+  // Try to discourage copying the image
+  staffModalImg.addEventListener('copy', e => {
+    staffModalImg.style.filter = 'blur(18px) brightness(0.2)';
+    setTimeout(() => staffModalImg.style.filter = '', 400);
+  });
+});
 

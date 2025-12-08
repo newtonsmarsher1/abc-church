@@ -200,6 +200,41 @@ input:focus, select:focus { outline: none; border-color: var(--accent); box-shad
   .nav-menu.open { display: flex; }
 }
 
+@media (max-width: 700px) {
+  .header-inner { flex-wrap: wrap; }
+  .nav-toggle { display: inline-block; z-index:110; background: transparent; color: var(--text); border:none; padding:12px 14px; font-size:2em; }
+  .nav-menu {
+    position: fixed;
+    top: 0; right: 0; left: 0;
+    background: #173a29ee;
+    border-radius: 0 0 18px 18px;
+    box-shadow: 0 15px 40px #0007;
+    flex-direction: column;
+    gap: 10px;
+    padding: 22px 0 17px 0;
+    text-align: left;
+    display: none;
+    z-index: 100;
+    width:100vw;
+    margin:0;
+    border-bottom:2.5px solid #b5eed2;
+  }
+  .nav-menu.open { display: flex; }
+  .nav-menu li { width:100%; }
+  .nav-menu a {
+    display:block;
+    padding:18px 24px;
+    font-size:1.13em;
+    border-radius:0; background:none;
+    border-bottom:1px solid #1fae73;
+    color: #fff;
+    margin: 0;
+  }
+  .nav-menu a:active, .nav-menu a:hover {
+    background: #2227; color: #fffd; font-weight:700;
+  }
+}
+
 @media print {
   .site-header, .hero, .actions, .nav, .btn { display: none !important; }
   body { background: #ffffff; color: #000; }
